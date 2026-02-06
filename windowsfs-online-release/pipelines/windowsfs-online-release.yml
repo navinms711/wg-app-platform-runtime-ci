@@ -68,6 +68,8 @@ resources:
     - NOTICE
     - README.md
     - docs/
+    - releases/
+    - .final_builds/
 
 - name: release-branch 
   type: git
@@ -500,6 +502,7 @@ jobs:
       passed: [prepare-env]
     - get: cf-deployment-concourse-tasks
   - task: export-release
+    attempts: 10
     file: ci/shared/tasks/bosh-export-release/linux.yml
     image: image
     params:
